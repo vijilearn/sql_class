@@ -110,19 +110,41 @@ app.patch("/users/:id",(req,res) =>{
 })
 
 //Delete Route
-app.delete("/users/:id",(req,res) =>{
+
+app.get("/users/:id/delete", (req,res) =>{
   let {id} = req.params;
   let q = `SELECT * FROM user WHERE id='${id}'`;
   try {
     connection.query(q, (e,user) =>{
         if (e) throw e;
-        let q2=`DELETE FROM user WHERE id='${id}'`;
-        connection.query(q2, (e,result) =>{
-        res.redirect("/users");
-      })
-                    
-    });
+        res.render("delete.ejs",{user});
+      });
+
   } catch (e) {
+    console.log(e);
+    res.send("some Error in DB");
+  }
+})
+  
+
+app.delete("/users/:id",(req,res) =>{
+  let {id} = req.params;
+  let {password:formpass} = req.body;
+  let q = `SELECT * FROM user WHERE id='${id}'`;
+  try {
+    connection.query(q, (e,user) =>{
+        if (e) throw e;
+        if (user[0].password == formpass) {
+          let q2=`DELETE FROM user WHERE id='${id}'`;
+          connection.query(q2, (e,result) =>{
+          res.redirect("/users");
+        });
+      }
+       else {
+           res.send("wrong password")
+       } 
+      });
+   } catch (e) {
     console.log(e);
     res.send("some Error in DB");
   }
