@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User DataBase Details</title>
+</head>
+<body>
+    <h1>User Details</h1>
+    <h2>Home Page</h2>
+    <h3>the total number of Users in the data base are : <%= count %></h3>
+    <form method="get" action="/users/new">
+    <button>Join Us Today</button>
+    </form>
+    <br/><br/>
+    <form method="get" action="http://localhost:8080/users">
+        <button type="submit">Show users</button>
+    </form>
+    
+</body>
+</html>

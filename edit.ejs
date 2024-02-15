@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User DataBase Details</title>
+</head>
+<body>
+    <h1>Edit your Personal Details Here</h1>
+        <form method="post" action="/users/<%= user[0].id %>?_method=PATCH">
+            <label for="username">USERNAME</label>&nbsp;&nbsp;
+           <textarea name="username" ><%= user[0].username %></textarea><br/><br/>
+           <label for="email">EMAIL</label>&nbsp;&nbsp;
+           <textarea name="email" ><%= user[0].email %></textarea><br/><br/>
+           <input type="password" name="password" placeholder="Emter your password"/><br/><br/>
+            <button>Save Details</button>
+        </form>
+   
+</body>
+</html>
